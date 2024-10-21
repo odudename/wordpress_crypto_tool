@@ -117,7 +117,7 @@ class Crypto_Admin
 
         add_menu_page(
             __('Crypto Settings', 'crypto'),
-            __('Crypto', 'crypto'),
+            __('Crypto Tool', 'crypto'),
             'manage_options',
             'crypto',
             array($this, 'display_dashboard_content'),

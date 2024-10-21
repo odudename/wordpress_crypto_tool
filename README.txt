@@ -1,6 +1,6 @@
-=== Crypto ===
+=== Crypto Tool ===
 Contributors: odude
-Donate link: https://web3yak.com
+Donate link: https://odude.com
 Tags: crypto, login, metamask, NFT, Blockchain, Token
 Requires at least: 3.0.1
 Requires PHP: 5.5
@@ -41,13 +41,13 @@ example: `[crypto-connect label="Connect Wallet" class="fl-button fl-is-info fl-
 == Limit Access to Content/Page ==
 ​
 
-* Show or hide content based on the availability of a specific Web3Domain.
+* Show or hide content based on the availability of a specific Web3 ODude Name.
 * Limit access to a full specific page.
 * Limit access to certain parts of the content using shortcode.
 * Example shortcode: `[crypto-block] Private article [/crypto-block]`
 
-= Option 1: Restrict by Web3Domain =
-* Users must have a specific NFT web3domain name from web3yak.com in their wallet.
+= Option 1: Restrict by ODude Name =
+* Users must have a specific NFT ODude Name in their wallet.
 * Use the shortcode `[crypto-access-domain]` to limit access to a page.
 
 = Option 2: Restrict by NFT or Cryptocurrency =
@@ -77,15 +77,6 @@ You can use a shortcode to add a Metamask button that enables the addition of a 
 
 &nbsp;
 
-== Marketplace of Web3Domain ==
-             
-Become a Web3Domain provider on your own website by selling subdomains. We will integrate the domain into our ecosystem, providing every domain user access to all of the features that Web3Domain offers.
-
-* It is best option to earn for membership by letting user to obtain subdomain of your web3 primary domain.
-* You earn as soon as domain minted.
-* You can set the price, image, description for your subdomain yourself.
-* You can also restrict not to be minted by public. Only you can mint it and transfer. Hence you can save commission fees too. 
-* All Web3Domains are NFTs. Which you can sell at opensea.io
 
 
 

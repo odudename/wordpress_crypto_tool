@@ -171,17 +171,17 @@ class Crypto
 		//require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-facebook.php';
 
 		//Crypto Domains URL redirect
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-domain-url.php';
+		//require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-domain-url.php';
 
 		//Crypto Domains Information
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-domain-info.php';
+		//require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-domain-info.php';
 
 		//Generate JSON
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-json.php';
+		//require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-json.php';
 
 
 		//Crypto Domains search
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-domain-search.php';
+		//require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crypto-domain-search.php';
 
 		$this->loader = new Crypto_Loader();
 	}

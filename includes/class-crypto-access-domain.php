@@ -4,11 +4,13 @@ class Crypto_Access
     private $domain_name;
     private $default_access;
     private $crypto_network;
+    private $mint_page;
 
     public function __construct()
     {
         $this->default_access = crypto_get_option('select_access_control', 'crypto_access_settings_start', 'web3domain');
         $this->domain_name = crypto_get_option('domain_name', 'crypto_access_settings', 'yak');
+        $this->mint_page = crypto_get_option('mint_page', 'crypto_access_settings', 'yak');
         add_shortcode('crypto-access-domain', array($this, 'crypto_access_box'));
         add_filter('crypto_settings_tabs', array($this, 'add_tabs'));
         add_filter('crypto_settings_sections', array($this, 'add_section_extension'));
@@ -48,8 +50,8 @@ class Crypto_Access
         $sections = array(
             array(
                 'id' => 'crypto_access_settings',
-                'title' => __('Web3Domain (YAK ID) Access', 'crypto'),
-                'description' => __('Limit access to specific areas of the website based on the availability of a Web3Domain.', 'crypto') . "<br>Get domain from <a href='" . esc_url('https://web3yak.com/') . "' target='_blank'>Web3Yak.com</a><br><br>" . "<b>Shortcode for limiting access to content</b><br>The shortcode should be written as <code>[crypto-block] for private information or content between the shortcode. [/crypto-block]</code><b><br><br>To limit access to the entire page.</b><br><code>Edit the desired page, and use the option from the setting panel to limit access.</code>",
+                'title' => __('ODude Name Access', 'crypto'),
+                'description' => __('Limit access to specific areas of the website based on the availability of a ODude Name (Web3Domain)', 'crypto') . "<br>Get Top Level Name (TLN) from <a href='" . esc_url('https://web3domain.org/') . "' target='_blank'>Web3Domain.org</a><br><br>" . "<b>Shortcode for limiting access to content</b><br>The shortcode should be written as <code>[crypto-block] for private information or content between the shortcode. [/crypto-block]</code><b><br><br>To limit access to the entire page.</b><br><code>Edit the desired page, and use the option from the setting panel to limit access.</code>",
                 'tab' => 'access',
             ),
         );
@@ -82,8 +84,8 @@ class Crypto_Access
 
                 array(
                     'name' => 'domain_name',
-                    'label' => __('TLD of the Web3Domain Name', 'crypto'),
-                    'description' => __('Enter the primary Web3Domain name. Access to this page will only be granted to users who have a sub-domain of this name in their wallet.', 'crypto'),
+                    'label' => __('TLN of ODude Name', 'crypto'),
+                    'description' => __('Enter the Top Level Domain Name (TLN). Access to selected page will only be granted to users who have a sub-name of this TLN in their wallet.', 'crypto'),
                     'type' => 'text',
                     'sanitize_callback' => 'sanitize_key',
                 ),
@@ -91,9 +93,17 @@ class Crypto_Access
                 array(
                     'name' => 'restrict_page',
                     'label' => __('Limit access to the page', 'crypto'),
-                    'description' => __('Select a page with the [crypto-connect label="Connect Wallet" class="fl-button fl-is-info fl-is-light"] [crypto-access-domain] shortcode to determine a member\'s status based on the presence of a specified domain in their wallet.', 'crypto'),
+                    'description' => __('Select a page with the [crypto-connect label="Connect Wallet" class="fl-button fl-is-info fl-is-light"] [crypto-access-domain] shortcode to determine a member\'s status based on the presence of a specified ODude Name in their wallet.', 'crypto'),
                     'type' => 'pages',
                     'sanitize_callback' => 'sanitize_key',
+                ),
+
+                array(
+                    'name' => 'mint_page',
+                    'label' => __('URL to Mint', 'crypto'),
+                    'description' => __('Enter URL to Mint sub-name of TLN', 'crypto'),
+                    'type' => 'url',
+                    'sanitize_callback' => 'sanitize_url',
                 ),
 
             ),
@@ -109,12 +119,12 @@ class Crypto_Access
         $fields = array('crypto_access_settings_start' => array(
             array(
                 'name' => 'select_access_control',
-                'label' => __('Choose Access Control', 'flexi'),
+                'label' => __('Choose Access Control', 'crypto'),
                 'description' => '',
                 'type' => 'radio',
                 'options' => array(
-                    'web3domain' => __('Web3Domain (YAK ID) Access', 'flexi'),
-                    'nft' => __('Cryptocurrency & Non-Fungible Token (NFT) Access', 'flexi'),
+                    'web3domain' => __('ODude Name Access', 'crypto'),
+                    'nft' => __('Cryptocurrency & Non-Fungible Token (NFT) Access', 'crypto'),
                 ),
                 'sanitize_callback' => 'sanitize_key',
             ),
@@ -240,7 +250,7 @@ class Crypto_Access
 
                     <div class="fl-tags fl-has-addons">
                         <span class="fl-tag">Account Status (<?php echo $current_user->user_login; ?>)</span>
-                        <span class="fl-tag fl-is-primary"><?php echo "." . $this->domain_name; ?> sub-domain holder</span>
+                        <span class="fl-tag fl-is-primary"><?php echo "." . $this->domain_name; ?> sub-name holder</span>
                     </div>
                 <?php
                 } else {
@@ -258,15 +268,19 @@ class Crypto_Access
                 <div class="fl-message fl-is-dark">
                     <div class="fl-message-body">
 
-                        Some content or pages on the site are exclusively available to members who possess a sub-domain of the
-                        <?php echo "." . $this->domain_name; ?> primary domain from <a href="https://www.web3yak.com/" target="_blank">Web3Yak.com</a>.
+                        Some content or pages on the site are exclusively available to members who possess a sub-name of the
+                        <b><?php echo "." . $this->domain_name; ?></b> primary ODude<br>
+                        <?php if ($this->mint_page != "") {
+                            echo '<a href="' . $this->mint_page . '" target="_blank">' . $this->mint_page . '</a>';
+                        }
+                        ?>
 
                     </div>
                 </div>
 
                 <div class="fl-message" id="crypto_msg">
                     <div class="fl-message-header">
-                        <p>Available domains into polygon address</p>
+                        <p>Available domains/name into polygon chain</p>
                     </div>
                     <div class="fl-message-body" id="crypto_msg_body">
                         <ul id="crypto_msg_ul">
@@ -278,7 +292,7 @@ class Crypto_Access
                 <div>
                     <a href="#" id="check_domain" onclick="location.reload();" class="fl-button fl-is-link fl-is-light">Verify the
                         presence of the
-                        <?php echo "." . $this->domain_name; ?> Web3Domain in your wallet</a>
+                        <?php echo "." . $this->domain_name; ?> ODude Name in your wallet</a>
                 </div>
             <?php
             } else {
