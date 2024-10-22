@@ -33,6 +33,7 @@ class Crypto_Activator
 	public static function activate()
 	{
 		global $wpdb;
+		/*
 		if (null === $wpdb->get_row("SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'search-domain'", 'ARRAY_A')) {
 
 			$current_user = wp_get_current_user();
@@ -57,7 +58,8 @@ class Crypto_Activator
 
 			crypto_set_option('search_page', 'crypto_marketplace_settings', $aid);
 		}
-
+*/
+		/*
 		if (null === $wpdb->get_row("SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'my-domain'", 'ARRAY_A')) {
 
 			$current_user = wp_get_current_user();
@@ -82,7 +84,8 @@ class Crypto_Activator
 
 			crypto_set_option('market_page', 'crypto_marketplace_settings', $aid);
 		}
-
+*/
+		/*
 		if (null === $wpdb->get_row("SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'domain-url'", 'ARRAY_A')) {
 
 			$current_user = wp_get_current_user();
@@ -107,7 +110,9 @@ class Crypto_Activator
 
 			crypto_set_option('url_page', 'crypto_marketplace_settings', $aid);
 		}
+*/
 
+		/*
 		if (null === $wpdb->get_row("SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'domain-url'", 'ARRAY_A')) {
 
 			$current_user = wp_get_current_user();
@@ -132,9 +137,11 @@ class Crypto_Activator
 
 			crypto_set_option('info_page', 'crypto_marketplace_settings', $aid);
 		}
-		crypto_set_option('primary_domain', 'crypto_marketplace_settings', 'yak');
-		crypto_set_option('price_ether', 'crypto_marketplace_settings', '1');
-		crypto_set_option('chainid', 'crypto_login_metamask', '0');
+			
+	*/
+		//crypto_set_option('primary_domain', 'crypto_marketplace_settings', 'yak');
+		//crypto_set_option('price_ether', 'crypto_marketplace_settings', '1');
+		//crypto_set_option('chainid', 'crypto_login_metamask', '0');
 		flush_rewrite_rules();
 	}
 }

@@ -5,7 +5,7 @@ Tags: crypto, login, metamask, NFT, Blockchain, Token
 Requires at least: 3.0.1
 Requires PHP: 5.5
 Tested up to: 6.1.1
-Stable tag: 2.10
+Stable tag: 2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,7 +98,7 @@ This section describes how to install the plugin and get it working.
 
 MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet through a browser extension or mobile app, which can then be used to interact with decentralized applications.
 
-= What is Web3Domain? =
+= What is Web3Domain or ODude Name? =
 
 Web3Domain is a platform that allows you to register and sell your own web3 domain names, which are minted on a blockchain network. These domain names can be used to create subdomains, which can be sold to visitors. The Web3Domain platform also provides features such as connecting to a crypto wallet, automatic login, and the ability to earn money by selling subdomains. Additionally, all Web3Domains are Non-Fungible Tokens (NFTs) which can be sold on platforms such as opensea.io.
 
@@ -109,32 +109,15 @@ Web3Domain is a platform that allows you to register and sell your own web3 doma
 3. Crypto Price
 
 == Changelog ==
+= 2.11 =
+* Removed Web3 Domain mint option
+
 = 2.10 = 
 * Updated price display demo url and other urls
 
 = 2.9 =
 * Updated Screenshots
 * Alert message if metamask not installed 
-
-= 2.8 =
-* Added Web3Domain Marketplace with Nft.Storage API decentralized Upload
-
-= 2.5 = 
-* Fixed "Visit Site" link for Web3 Domain Name
-
-= 2.3 =
-* Block Editor for "Add New Token"
-* Block Editor for "Add or Switch Network"
-* Block Editor for "Crypto Connect Button"
-* Block Editor for "Token Price"
-
-= 2.2 = 
-Updated languages
-Auto generate required pages
-Live demo links
-
-= 2.1 =
-All starts from scratch
 
 == Upgrade Notice ==
 
