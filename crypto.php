@@ -30,7 +30,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-define('CRYPTO_VERSION', '2.1011');
+define('CRYPTO_VERSION', '2.11');
 define('CRYPTO_FOLDER', dirname(plugin_basename(__FILE__)));
 define('CRYPTO_PLUGIN_URL', content_url('/plugins/' . CRYPTO_FOLDER));
 define('CRYPTO_BASE_DIR', WP_CONTENT_DIR . '/plugins/' . CRYPTO_FOLDER . '/');
