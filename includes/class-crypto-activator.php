@@ -139,9 +139,40 @@ class Crypto_Activator
 		}
 			
 	*/
+
+
+
+		if (null === $wpdb->get_row("SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'check-domain'", 'ARRAY_A')) {
+
+			$current_user = wp_get_current_user();
+
+			// create post object
+			$page = array(
+				'post_title'  => __('Check Web3 Name'),
+				'post_status' => 'publish',
+				'post_author' => $current_user->ID,
+				'post_type'   => 'page',
+				'post_content' => '<!-- wp:shortcode -->
+				 [crypto-connect label="Connect Wallet" class="fl-button fl-is-info fl-is-light"]
+				<!-- /wp:shortcode -->
+				
+				<!-- wp:shortcode -->
+				 [crypto-access-domain]
+				<!-- /wp:shortcode -->'
+			);
+
+			// insert the post into the database
+			$aid = wp_insert_post($page);
+
+			crypto_set_option('restrict_page', 'crypto_access_settings', $aid);
+		}
+
+
+
+
 		//crypto_set_option('primary_domain', 'crypto_marketplace_settings', 'yak');
 		//crypto_set_option('price_ether', 'crypto_marketplace_settings', '1');
-		//crypto_set_option('chainid', 'crypto_login_metamask', '0');
+		crypto_set_option('chainid', 'crypto_login_metamask', '0');
 		flush_rewrite_rules();
 	}
 }

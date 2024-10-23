@@ -244,6 +244,7 @@ class Crypto_Price
 			);
 
 			$response = wp_remote_retrieve_body(wp_remote_get($request, $args));
+			//print_r($response);
 			update_option($data_option_name, $response);
 			update_option($timestamp_option_name, $current_timestamp);
 			return $response;
@@ -253,21 +254,29 @@ class Crypto_Price
 
 	public function style($style = "none", $data = '0.0', $curr = "USD", $id = "BTC", $img = '', $color = 'fl-is-primary')
 	{
-		$theme = '<div class="fl-column fl-is-narrow">';
+		$theme = '';
 		if ($style == 'style1') {
+			$theme = '.<div class=\"fl-columns\">';
+			$theme = '.<div class="fl-column fl-is-narrow">';
 			$theme .= '<div class="fl-notification ' . $color . ' fl-pb-0 fl-pt-0">';
 			$theme .= '<p class="fl-is-size-4 fl-has-text-centered fl-mb-1"><strong>' . $data . '</strong> </p>';
 			$theme .= '<p class="fl-is-size-6 fl-has-text-centered"> <img src="' . $img . '" width="16"> ' . $id . '/' . $curr . '</p>';
 			$theme .= "</div>";
+			$theme .= "</div>";
+			$theme .= "</div>";
 		} else if ($style == 'style2') {
+			$theme = '.<div class=\"fl-columns\">';
+			$theme = '.<div class="fl-column fl-is-narrow">';
 			$theme .= '<div class="fl-tag ' . $color . ' ">';
 			$theme .= '<img src="' . $img . '" width="16">&nbsp;';
 			$theme .= $data;
 			$theme .= "</div>";
+			$theme .= "</div>";
+			$theme .= "</div>";
 		} else {
 			$theme .= $id . ' <strong>' . $data . '</strong> ' . $curr;
 		}
-		$theme .= '</div>';
+		$theme .= '';
 		return $theme;
 	}
 
@@ -297,12 +306,19 @@ class Crypto_Price
 				$color = $this->theme_color;
 			}
 
-			$output = "<div class=\"fl-columns\">";
+
 			$token_ids = explode(",", strval($symbol));
 
 			foreach ($token_ids as $tid) {
 				$data = json_decode($this->crypto_price_info($tid, $curr));
+				/* write a code to check if $data is valid	 */
+				if (!isset($data->status->error_code) || $data->status->error_code != '0' || !isset($data->data->$tid->quote->$curr->price)) {
+					$output = "Server Error";
+					return $output;
+				}
+				$output = "";
 				if ($data->status->error_code == '0') {
+					//$output .= "<div class=\"fl-columns\">";
 					if (isset($data->data->$tid->quote->$curr->price)) {
 						$data_result = round($data->data->$tid->quote->$curr->price, 2);
 					} else {
@@ -311,11 +327,12 @@ class Crypto_Price
 					}
 					$img = 'https://s2.coinmarketcap.com/static/img/coins/64x64/' . $data->data->$tid->id . '.png';
 					$output .= $this->style($style, $data_result, $curr, $tid, $img, $color);
+					//$output .= "</div>";
 				} else {
 					$output = $data->status->error_message;
 				}
 			}
-			$output .= "</div>";
+			$output .= "";
 			return $output;
 		}
 		$put = ob_get_clean();
@@ -345,28 +362,29 @@ class Crypto_Price
 	{
 		ob_start();
 ?>
-		<div class="changelog section-getting-started">
-			<div class="feature-section">
-				<h2>Price Display</h2>
-				<div class="wrap">
-					<b>The "Crypto" plugin enables users to display current cryptocurrency prices in various currencies.</b>
-					<br><br><a class="button button-primary" href="<?php echo admin_url('admin.php?page=crypto_settings&tab=price&section=crypto_price_settings'); ?>">Price
-						Display Settings</a>
-					<a class="button button-primary" target="_blank" href="https://web3domain.org/studio/search-domain/">Live
-						Demo</a>
-					<br><br>
-					<b>Tips</b>
-					<ul>
-						<li>* Obtain an API key from CoinMarketCap.com, which is free to acquire.</li>
-						<li>* Initially set the 'Crypto Data Caching' time to 1 second. Once it is working well, increase it as
-							needed. This will save bandwidth and improve speed.</li>
-						<li>* To display prices within an article, use the 'none' style. This will not disrupt the paragraph's
-							formatting.</li>
-					</ul>
+<div class="changelog section-getting-started">
+    <div class="feature-section">
+        <h2>Price Display</h2>
+        <div class="wrap">
+            <b>The "Crypto" plugin enables users to display current cryptocurrency prices in various currencies.</b>
+            <br><br><a class="button button-primary"
+                href="<?php echo admin_url('admin.php?page=crypto_settings&tab=price&section=crypto_price_settings'); ?>">Price
+                Display Settings</a>
+            <a class="button button-primary" target="_blank" href="https://web3domain.org/studio/search-domain/">Live
+                Demo</a>
+            <br><br>
+            <b>Tips</b>
+            <ul>
+                <li>* Obtain an API key from CoinMarketCap.com, which is free to acquire.</li>
+                <li>* Initially set the 'Crypto Data Caching' time to 1 second. Once it is working well, increase it as
+                    needed. This will save bandwidth and improve speed.</li>
+                <li>* To display prices within an article, use the 'none' style. This will not disrupt the paragraph's
+                    formatting.</li>
+            </ul>
 
-				</div>
-			</div>
-		</div>
+        </div>
+    </div>
+</div>
 <?php
 		$content = ob_get_clean();
 		return $content;
