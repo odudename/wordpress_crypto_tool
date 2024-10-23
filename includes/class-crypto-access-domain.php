@@ -101,7 +101,7 @@ class Crypto_Access
                 array(
                     'name' => 'mint_page',
                     'label' => __('URL to Mint', 'crypto'),
-                    'description' => __('Enter URL to Mint sub-name of TLN', 'crypto'),
+                    'description' => __('Enter URL to Mint sub-name of TLN. Get free application at <code>https://web3yak.com/</code>', 'crypto'),
                     'type' => 'url',
                     'sanitize_callback' => 'sanitize_url',
                 ),
