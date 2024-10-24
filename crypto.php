@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://web3domain.org/
+ * @link              https://odude.com/
  * @since             2.11
  * @package           Crypto
  *
  * @wordpress-plugin
  * Plugin Name:       Crypto
- * Plugin URI:        http://web3domain.org/
+ * Plugin URI:        http://odude.com/
  * Description:       Crypto - Price widget, Metamask Login, Block content. 
  * Version:           2.11
  * Author:            ODude
- * Author URI:        https://web3domain.org/
+ * Author URI:        https://odude.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       crypto
