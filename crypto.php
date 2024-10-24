@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://web3domain.org/
- * @since             2.10
+ * @since             2.11
  * @package           Crypto
  *
  * @wordpress-plugin
  * Plugin Name:       Crypto
  * Plugin URI:        http://web3domain.org/
- * Description:       Crypto - everyday use tools. 
- * Version:           2.10
+ * Description:       Crypto - Price widget, Metamask Login, Block content. 
+ * Version:           2.11
  * Author:            ODude
  * Author URI:        https://web3domain.org/
  * License:           GPL-2.0+

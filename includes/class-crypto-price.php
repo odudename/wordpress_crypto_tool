@@ -274,7 +274,7 @@ class Crypto_Price
 			$theme .= "</div>";
 			$theme .= "</div>";
 		} else {
-			$theme .= $id . ' <strong>' . $data . '</strong> ' . $curr;
+			$theme .= ' <strong>' . $data . '</strong>';
 		}
 		$theme .= '';
 		return $theme;
@@ -313,7 +313,7 @@ class Crypto_Price
 				$data = json_decode($this->crypto_price_info($tid, $curr));
 				/* write a code to check if $data is valid	 */
 				if (!isset($data->status->error_code) || $data->status->error_code != '0' || !isset($data->data->$tid->quote->$curr->price)) {
-					$output = "Server Error";
+					$output = "0.00";
 					return $output;
 				}
 				$output = "";
