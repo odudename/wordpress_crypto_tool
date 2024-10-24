@@ -109,7 +109,7 @@ Web3Domain is a platform that allows you to register and sell your own web3 doma
 3. Crypto Price
 
 == Changelog ==
-= 2.11 =
+= 2.12 =
 * Removed Web3 Domain mint option
 
 = 2.10 = 
